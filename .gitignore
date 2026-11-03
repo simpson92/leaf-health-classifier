@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+*.db
+backups/
+data/
+dataset/
+# *.pth   ← 모델 파일 업로드 여부는 강사 지침 확인 후 결정
