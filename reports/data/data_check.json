@@ -1,0 +1,25 @@
+{
+  "counts": {
+    "train": {
+      "angular_leaf_spot": 345,
+      "bean_rust": 348,
+      "healthy": 341
+    },
+    "val": {
+      "angular_leaf_spot": 44,
+      "bean_rust": 45,
+      "healthy": 44
+    },
+    "test": {
+      "angular_leaf_spot": 43,
+      "bean_rust": 43,
+      "healthy": 42
+    }
+  },
+  "duplicates": [],
+  "cross_split_duplicates": [],
+  "broken": [],
+  "image_sizes": {
+    "500x500": 1295
+  }
+}
