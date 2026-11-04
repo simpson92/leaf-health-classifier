@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}비동기식 분류{% endblock %}
+{% block content %}
+<section class="panel">
+  <h2>비동기식: 작업 번호를 먼저 받고, 결과는 나중에 확인합니다</h2>
+  <input id="image" type="file" accept="image/jpeg,image/png,image/webp">
+  <button id="send">작업 등록</button><button id="cancel" type="button">조회 중지</button>
+  <img id="preview" class="preview" hidden>
+  <p id="state">이미지를 선택하세요.</p>
+  <p id="timing" class="muted"></p>
+  <div id="result"></div>
+  <details><summary>응답 JSON</summary><pre id="output">{}</pre></details>
+</section>
+<script>
+const KO = {angular_leaf_spot: '각진잎반점병', bean_rust: '녹병', healthy: '정상'};
+const POLL_MS = 500;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const fileEl = document.getElementById('image');
+const state = document.getElementById('state');
+const timing = document.getElementById('timing');
+const out = document.getElementById('output');
+let cancelled = false;
+
+fileEl.onchange = () => {
+  const f = fileEl.files[0];
+  if (f) { const p = document.getElementById('preview'); p.src = URL.createObjectURL(f); p.hidden = false; }
+};
+document.getElementById('cancel').onclick = () => {
+  cancelled = true; state.textContent = '상태 조회만 중지했습니다 (워커 작업은 계속됩니다).';
+};
+function renderResult(data) {
+  document.getElementById('result').innerHTML = (data.all || []).map(x => `
+    <div class="bar-row">
+      <span class="bar-label">${KO[x.label] || x.label}</span>
+      <span class="bar"><span style="width:${(x.score * 100).toFixed(1)}%"></span></span>
+      <span class="bar-value">${(x.score * 100).toFixed(1)}%</span>
+    </div>`).join('');
+}
+document.getElementById('send').onclick = async () => {
+  const file = fileEl.files[0];
+  if (!file) { alert('이미지를 선택하세요'); return; }
+  const button = document.getElementById('send'); button.disabled = true; cancelled = false;
+  timing.textContent = ''; renderResult({});
+  const form = new FormData(); form.append('image', file);
+  const started = performance.now();
+  state.textContent = '작업 등록 중...';
+  try {
+    const res = await fetch('/api/async/classify/', {method: 'POST', body: form});
+    const data = await res.json();
+    out.textContent = JSON.stringify(data, null, 2);
+    if (!res.ok) { state.textContent = `등록 실패 HTTP ${res.status} · ${data.detail}`; return; }
+    const accepted = Math.round(performance.now() - started);
+    state.textContent = `HTTP ${res.status} 접수 ${accepted}ms · job_id=${data.job_id} · 상태 ${data.status}`;
+    for (let i = 0; i < 120 && !cancelled; i++) {
+      await sleep(POLL_MS); if (cancelled) break;
+      const s = await fetch(data.check_url, {cache: 'no-store'});
+      if (!s.ok) { state.textContent = `상태 조회 실패 HTTP ${s.status}`; break; }
+      const job = await s.json();
+      out.textContent = JSON.stringify(job, null, 2);
+      state.textContent = `접수 ${accepted}ms · 화면 기준 ${Math.round(performance.now() - started)}ms · 상태 ${job.status}`;
+      if (job.status === 'done' || job.status === 'failed') {
+        timing.textContent = `서버 기준: 큐 대기 ${job.queue_ms ?? '-'}ms · 접수→완료 ${job.total_ms ?? '-'}ms`
+          + ` · 추론 ${job.inference_ms ?? '-'}ms · 캐시 ${job.cache_hit ? 'HIT' : 'MISS'}`;
+        if (job.status === 'done') renderResult(job);
+        else timing.textContent += ` · 실패: ${job.error_message}`;
+        break;
+      }
+    }
+  } catch (err) { state.textContent = `요청 실패: ${err}`; }
+  finally { button.disabled = false; }
+};
+</script>
+{% endblock %}

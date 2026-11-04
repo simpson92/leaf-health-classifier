@@ -21,3 +21,4 @@ CACHE_SECONDS = int(os.getenv("CACHE_SECONDS", "600"))
 MAX_UPLOAD_BYTES = 5 * 1024 * 1024
 MAX_IMAGE_PIXELS = 12_000_000
 MEDIA_DIR = BASE_DIR / "media" / "jobs"
+WARMUP = os.getenv("WARMUP", "1") == "1"   # [개선] 시작 시 모델 미리 로딩 (0이면 끔: 비교 측정용)

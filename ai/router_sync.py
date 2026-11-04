@@ -1,7 +1,8 @@
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
+from .cache_service import classify_with_cache
 from .config import MAX_UPLOAD_BYTES
-from .services import InvalidImage, classify_image_bytes
+from .services import InvalidImage
 
 router = APIRouter(tags=["동기 추론"])
 
@@ -13,6 +14,6 @@ def classify_sync(image: UploadFile = File(...)):
     if len(image_bytes) > MAX_UPLOAD_BYTES:
         raise HTTPException(status_code=413, detail="5MB 이하 파일만 허용합니다.")
     try:
-        return classify_image_bytes(image_bytes)
+        return classify_with_cache(image_bytes)
     except InvalidImage as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc

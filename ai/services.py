@@ -57,3 +57,9 @@ def cache_key(image_bytes: bytes) -> str:
     digest = hashlib.sha256(image_bytes).hexdigest()
     model = hashlib.sha256(MODEL_PATH.encode("utf-8")).hexdigest()[:16]
     return f"vision:classify:{model}:{digest}"
+
+def warmup() -> float:
+    """[개선] 서버·워커 시작 시 모델을 미리 불러오고 GPU를 한 번 돌려 둔다."""
+    started = time.perf_counter()
+    get_classifier()(Image.new("RGB", (224, 224), (60, 140, 60)), top_k=1)
+    return round((time.perf_counter() - started) * 1000, 1)

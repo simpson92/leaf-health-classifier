@@ -16,3 +16,7 @@ def home():
 @router.get("/vision/sync/")
 def sync_page(request: Request):
     return templates.TemplateResponse(request=request, name="sync.html")
+
+@router.get("/vision/async/")
+def async_page(request: Request):
+    return templates.TemplateResponse(request=request, name="async.html")

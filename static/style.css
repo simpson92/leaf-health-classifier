@@ -17,3 +17,4 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#07101b;border-radius
 .bar span{display:block;height:100%;background:#78aafa}
 .bar-value{width:60px;text-align:right}
 details{margin-top:12px}
+.muted{color:#adb9cb;font-size:14px}
