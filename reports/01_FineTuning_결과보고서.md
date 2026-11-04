@@ -185,6 +185,17 @@ Train Loss는 계속 줄지만 Val 정확도는 1 epoch 이후 떨어진다. 학
 
 ## 8. 서비스 연결 확인
 
+**학습 전후 비교 (같은 이미지 `healthy_test.0.jpg`)**
+
+| 모델 | 1위 예측 | 2위 예측 | 증빙 |
+|---|---|---|---|
+| 학습 전 `microsoft/resnet-18` (ImageNet 1,000클래스) | bonnet, poke bonnet (모자) 70.3% | head cabbage (양배추) 17.2% | ![](evidence/sync_before_finetune.png) |
+| 학습 후 `artifacts/e3_plus_aug` | **정상 91.4%** | 각진잎반점병 4.8% | ![](evidence/sync_after_finetune.png) |
+
+원본 모델은 콩잎 질병이라는 개념 자체를 모르기 때문에, 사진을 일반 사물 이름으로만 분류한다. Fine-tuning으로 출력층을 3클래스로 바꾸고 학습해야 서비스에 쓸 수 있다.
+
+**클래스별 확인**
+
 | 이미지 | 예측 | 확신도 | 증빙 |
 |---|---|---:|---|
 | `healthy_test.0.jpg` | 정상 | 91.4% | ![](evidence/sync_healthy.png) |
