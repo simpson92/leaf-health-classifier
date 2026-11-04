@@ -1,0 +1,16 @@
+{
+  "model": "artifacts/beans_resnet18_full",
+  "split": "val",
+  "preprocess": "none",
+  "accuracy": {
+    "original": 0.9699,
+    "dark": 0.8797,
+    "bright": 0.7218,
+    "low_contrast": 0.9098,
+    "blur": 0.8571,
+    "rotate45": 0.9624,
+    "jpeg_q20": 0.9549
+  },
+  "perturbed_mean": 0.881,
+  "perturbed_min": 0.7218
+}

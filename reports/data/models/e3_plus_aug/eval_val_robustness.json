@@ -1,0 +1,16 @@
+{
+  "model": "artifacts/e3_plus_aug",
+  "split": "val",
+  "preprocess": "none",
+  "accuracy": {
+    "original": 0.9925,
+    "dark": 0.9699,
+    "bright": 0.8947,
+    "low_contrast": 0.9474,
+    "blur": 0.9398,
+    "rotate45": 0.9925,
+    "jpeg_q20": 0.985
+  },
+  "perturbed_mean": 0.9549,
+  "perturbed_min": 0.8947
+}

@@ -1,0 +1,55 @@
+{
+  "model": "artifacts/beans_resnet18",
+  "split": "val",
+  "tta": false,
+  "preprocess": "none",
+  "count": 133,
+  "accuracy": 0.7669,
+  "macro_f1": 0.764,
+  "per_class": {
+    "angular_leaf_spot": {
+      "precision": 0.7857,
+      "recall": 0.75,
+      "f1": 0.7674,
+      "support": 44
+    },
+    "bean_rust": {
+      "precision": 0.725,
+      "recall": 0.6444,
+      "f1": 0.6824,
+      "support": 45
+    },
+    "healthy": {
+      "precision": 0.7843,
+      "recall": 0.9091,
+      "f1": 0.8421,
+      "support": 44
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "angular_leaf_spot",
+      "bean_rust",
+      "healthy"
+    ],
+    "matrix": [
+      [
+        33,
+        8,
+        3
+      ],
+      [
+        8,
+        29,
+        8
+      ],
+      [
+        1,
+        3,
+        40
+      ]
+    ]
+  },
+  "forward_ms_per_image": 2.24,
+  "device": "cuda"
+}

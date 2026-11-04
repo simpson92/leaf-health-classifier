@@ -1,0 +1,16 @@
+{
+  "model": "artifacts/e2_plus_noaug",
+  "split": "val",
+  "preprocess": "none",
+  "accuracy": {
+    "original": 1.0,
+    "dark": 0.9624,
+    "bright": 0.8045,
+    "low_contrast": 0.9323,
+    "blur": 0.9323,
+    "rotate45": 0.9624,
+    "jpeg_q20": 1.0
+  },
+  "perturbed_mean": 0.9323,
+  "perturbed_min": 0.8045
+}

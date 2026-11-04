@@ -1,0 +1,165 @@
+{
+  "base_model": "microsoft/resnet-18",
+  "method": "finetune_plus",
+  "classes": [
+    "angular_leaf_spot",
+    "bean_rust",
+    "healthy"
+  ],
+  "train_count": 1034,
+  "val_count": 133,
+  "best_val_accuracy": 0.9924812030075187,
+  "best_val_loss": 0.1156,
+  "best_epoch": 5,
+  "train_seconds": 39.6,
+  "config": {
+    "data": "dataset",
+    "output": "artifacts/e4_plus_aug_clahe",
+    "base_model": "microsoft/resnet-18",
+    "epochs": 15,
+    "batch_size": 32,
+    "lr_head": 0.001,
+    "lr_backbone": 0.0001,
+    "weight_decay": 0.0001,
+    "label_smoothing": 0.1,
+    "freeze_epochs": 2,
+    "freeze_backbone": false,
+    "augment": "basic",
+    "preprocess": "clahe",
+    "patience": 5,
+    "num_workers": 2,
+    "seed": 42
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "stage": "head",
+      "loss": 1.0462,
+      "train_accuracy": 0.4265,
+      "val_loss": 0.7939,
+      "val_accuracy": 0.6767,
+      "val_recall": {
+        "angular_leaf_spot": 0.7727,
+        "bean_rust": 0.3556,
+        "healthy": 0.9091
+      }
+    },
+    {
+      "epoch": 2,
+      "stage": "head",
+      "loss": 0.7806,
+      "train_accuracy": 0.736,
+      "val_loss": 0.6141,
+      "val_accuracy": 0.7669,
+      "val_recall": {
+        "angular_leaf_spot": 0.5455,
+        "bean_rust": 0.9333,
+        "healthy": 0.8182
+      }
+    },
+    {
+      "epoch": 3,
+      "stage": "full",
+      "loss": 0.5614,
+      "train_accuracy": 0.8569,
+      "val_loss": 0.194,
+      "val_accuracy": 0.9474,
+      "val_recall": {
+        "angular_leaf_spot": 1.0,
+        "bean_rust": 0.8444,
+        "healthy": 1.0
+      }
+    },
+    {
+      "epoch": 4,
+      "stage": "full",
+      "loss": 0.4884,
+      "train_accuracy": 0.8965,
+      "val_loss": 0.1519,
+      "val_accuracy": 0.9624,
+      "val_recall": {
+        "angular_leaf_spot": 0.9091,
+        "bean_rust": 0.9778,
+        "healthy": 1.0
+      }
+    },
+    {
+      "epoch": 5,
+      "stage": "full",
+      "loss": 0.4158,
+      "train_accuracy": 0.9545,
+      "val_loss": 0.1156,
+      "val_accuracy": 0.9925,
+      "val_recall": {
+        "angular_leaf_spot": 1.0,
+        "bean_rust": 0.9778,
+        "healthy": 1.0
+      }
+    },
+    {
+      "epoch": 6,
+      "stage": "full",
+      "loss": 0.4009,
+      "train_accuracy": 0.9594,
+      "val_loss": 0.1436,
+      "val_accuracy": 0.9624,
+      "val_recall": {
+        "angular_leaf_spot": 0.9091,
+        "bean_rust": 1.0,
+        "healthy": 0.9773
+      }
+    },
+    {
+      "epoch": 7,
+      "stage": "full",
+      "loss": 0.3774,
+      "train_accuracy": 0.9797,
+      "val_loss": 0.1382,
+      "val_accuracy": 0.9699,
+      "val_recall": {
+        "angular_leaf_spot": 0.9091,
+        "bean_rust": 1.0,
+        "healthy": 1.0
+      }
+    },
+    {
+      "epoch": 8,
+      "stage": "full",
+      "loss": 0.3677,
+      "train_accuracy": 0.9768,
+      "val_loss": 0.1711,
+      "val_accuracy": 0.9624,
+      "val_recall": {
+        "angular_leaf_spot": 0.8864,
+        "bean_rust": 1.0,
+        "healthy": 1.0
+      }
+    },
+    {
+      "epoch": 9,
+      "stage": "full",
+      "loss": 0.3582,
+      "train_accuracy": 0.9836,
+      "val_loss": 0.121,
+      "val_accuracy": 0.985,
+      "val_recall": {
+        "angular_leaf_spot": 0.9545,
+        "bean_rust": 1.0,
+        "healthy": 1.0
+      }
+    },
+    {
+      "epoch": 10,
+      "stage": "full",
+      "loss": 0.3639,
+      "train_accuracy": 0.9797,
+      "val_loss": 0.1213,
+      "val_accuracy": 0.985,
+      "val_recall": {
+        "angular_leaf_spot": 0.9545,
+        "bean_rust": 1.0,
+        "healthy": 1.0
+      }
+    }
+  ]
+}
