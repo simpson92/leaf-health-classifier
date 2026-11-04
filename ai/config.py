@@ -9,7 +9,7 @@ load_dotenv(BASE_DIR / ".env")
 # 모델: 학습 전에는 원본, 학습 후에는 .env에서 artifacts/... 로 변경
 MODEL_PATH = os.getenv("MODEL_PATH", "microsoft/resnet-18")
 
-# 6단계(비동기)에서 사용할 설정 — 지금은 쓰이지 않음
+# DB·Redis 설정 (캐시는 동기·비동기 공통, DB·Broker는 비동기)
 DATABASE_URL = os.getenv(
     "DATABASE_URL", "postgresql+psycopg://vision_user:vision_pass@127.0.0.1:5432/vision_db")
 REDIS_CACHE_URL = os.getenv("REDIS_CACHE_URL", "redis://127.0.0.1:6379/1")

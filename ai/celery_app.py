@@ -1,7 +1,6 @@
 from celery import Celery
 from celery.signals import worker_init
 
-from .config import CELERY_BROKER_URL, CELERY_RESULT_BACKEND, WARMUP
 from .config import BROKER_POOL_LIMIT, CELERY_BROKER_URL, CELERY_RESULT_BACKEND, WARMUP
 
 celery_app = Celery(
