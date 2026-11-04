@@ -2,6 +2,7 @@ from celery import Celery
 from celery.signals import worker_init
 
 from .config import CELERY_BROKER_URL, CELERY_RESULT_BACKEND, WARMUP
+from .config import BROKER_POOL_LIMIT, CELERY_BROKER_URL, CELERY_RESULT_BACKEND, WARMUP
 
 celery_app = Celery(
     "vision_ai",
@@ -16,6 +17,7 @@ celery_app.conf.update(
     timezone="Asia/Seoul",
     task_track_started=True,
     broker_connection_retry_on_startup=True,
+    broker_pool_limit=BROKER_POOL_LIMIT,
 )
 
 
