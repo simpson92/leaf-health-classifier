@@ -2,17 +2,39 @@
   <img src="assets/banner.jpg" alt="Leaf Health Classifier" width="65%">
 </p>
 
+<h1 align="center">Leaf Health Classifier</h1>
+
 <p align="center">
-  <b>콩잎 사진 1장 → 각진잎반점병 · 녹병 · 정상 판별 AI 웹 서비스</b><br>
-  <code>microsoft/resnet-18</code> Fine-tuning · FastAPI 동기/비동기 · Redis · Celery · PostgreSQL<br>
-  <a href="reports/08_최종기술보고서.md"><b>📄 최종 기술보고서</b></a> · 산출물
+  <b>콩잎 사진 한 장으로 각진잎반점병 · 녹병 · 정상을 판별하는 Vision AI 웹 서비스</b><br>
+  ResNet18 Fine-tuning · FastAPI 동기/비동기 · Redis · Celery · PostgreSQL
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch">
+  <img src="https://img.shields.io/badge/🤗_Transformers-microsoft%2Fresnet--18-FFD21E" alt="Transformers">
+  <img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/Celery-37814A?logo=celery&logoColor=white" alt="Celery">
+  <img src="https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white" alt="Redis">
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/Docker_Compose-2496ED?logo=docker&logoColor=white" alt="Docker">
+</p>
+
+<p align="center">
+  <a href="reports/08_최종기술보고서.md"><b>📄 최종 기술보고서</b></a> ·
+  <a href="reports/02_시스템_아키텍처.md"><b>🏗 아키텍처</b></a> ·
+  <a href="reports/01_FineTuning_결과보고서.md"><b>📊 모델 결과</b></a> ·
+  <a href="reports/06_성능비교_보고서.md"><b>⚡ 시스템 성능</b></a> ·
+  <a href="reports/07_기능테스트_오류분석.md"><b>✅ 기능 테스트</b></a><br>
+  산출물
   <a href="reports/01_FineTuning_결과보고서.md">1</a> ·
   <a href="reports/02_시스템_아키텍처.md">2</a> ·
   <a href="reports/03_API_명세서.md">3</a> ·
   <a href="reports/04_DB_구조_작업이력.md">4</a> ·
   <a href="reports/05_AI버튼_처리흐름.md">5</a> ·
   <a href="reports/06_성능비교_보고서.md">6</a> ·
-  <a href="reports/07_기능테스트_오류분석.md">7</a>
+  <a href="reports/07_기능테스트_오류분석.md">7</a> ·
+  <a href="reports/08_최종기술보고서.md">8</a>
 </p>
 
 ## 📊 결과: 교재 그대로 71.9% → 개선 후 99.2% (Test 128장)
